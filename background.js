@@ -7,7 +7,9 @@ chrome.runtime.onInstalled.addListener(function() {
       {
         conditions: [
           new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostEquals: 'developer.chrome.com' }
+            pageUrl: {
+              hostEquals: 'soundcloud.com'
+            }
           })
         ],
         actions: [new chrome.declarativeContent.ShowPageAction()]
