@@ -1,13 +1,13 @@
-console.log(
-  document.getElementsByClassName('playbackTimeline__progressWrapper')[0]
-    .attributes[3].nodeValue,
-  document.getElementsByClassName(
-    'playbackSoundBadge__titleLink sc-truncate'
-  )[0].attributes[2].nodeValue,
-  document.getElementsByClassName(
-    'playbackSoundBadge__titleLink sc-truncate'
-  )[0].attributes[0].nodeValue
-)
+// console.log(
+//   document.getElementsByClassName('playbackTimeline__progressWrapper')[0]
+//     .attributes[3].nodeValue,
+//   document.getElementsByClassName(
+//     'playbackSoundBadge__titleLink sc-truncate'
+//   )[0].attributes[2].nodeValue,
+//   document.getElementsByClassName(
+//     'playbackSoundBadge__titleLink sc-truncate'
+//   )[0].attributes[0].nodeValue
+// )
 
 chrome.storage.sync.set(
   {
@@ -50,7 +50,7 @@ chrome.storage.sync.set(
   },
   function() {
     console.log(
-      `The url is:  soundcloud.com/${
+      `The url is:  soundcloud.com${
         document.getElementsByClassName(
           'playbackSoundBadge__titleLink sc-truncate'
         )[0].attributes[0].nodeValue
