@@ -1,7 +1,4 @@
 let changeColor = document.getElementById('changeColor')
-let scripty =
-  'console.log(document.getElementsByClassName("playbackTimeline__progressWrapper")[0].attributes[3].nodeValue, document.getElementsByClassName("playbackSoundBadge__titleLink sc-truncate")[0].attributes[2].nodeValue, document.getElementsByClassName("playbackSoundBadge__titleLink sc-truncate")[0].attributes[0].nodeValue);'
-// let script = 'chrome.storage.local.set({key: "value"});'
 chrome.storage.sync.get('color', function(data) {
   changeColor.style.backgroundColor = data.color
   changeColor.setAttribute('value', data.color)
