@@ -15,21 +15,33 @@
 // constructOptions(kButtonColors)
 
 let page = document.getElementById('buttonDiv')
+let table = document.getElementById('song-table')
 // const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1']
 function constructOptions() {
-  chrome.storage.sync.get(['track_title', 'url', 'time_in_seconds'], function(
-    data
-  ) {
+  chrome.storage.sync.get(['title', 'url', 'timestamp'], function(data) {
     console.log(data)
     let title = document.createElement('p')
     let timestamp = document.createElement('p')
-    let url = document.createElement('p')
-    title.innerHTML = data.track_title
-    timestamp.innerHTML = data.time_in_seconds
-    url.innerHTML = data.url
+    let url = document.createElement('a')
+    title.innerHTML = data.title
+    timestamp.innerHTML = data.timestamp
+    url.innerHTML = `https://soundcloud.com${data.url}#t=${data.timestamp}`
+    url.href = `https://soundcloud.com${data.url}#t=${data.timestamp}`
     page.appendChild(title)
     page.appendChild(timestamp)
     page.appendChild(url)
   })
 }
+
+const constructTable = async () => {
+  let response = await fetch(`http://localhost:3000/songs`)
+  let responseJSON = await response.json()
+  // responseJSON.map()
+  // console.log(responseJSON)
+  responseJSON.forEach(a => {
+    console.log(a)
+  })
+}
+
 constructOptions()
+constructTable()

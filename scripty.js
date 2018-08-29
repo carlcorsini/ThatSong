@@ -1,33 +1,23 @@
-// console.log(
-//   document.getElementsByClassName('playbackTimeline__progressWrapper')[0]
-//     .attributes[3].nodeValue,
-//   document.getElementsByClassName(
-//     'playbackSoundBadge__titleLink sc-truncate'
-//   )[0].attributes[2].nodeValue,
-//   document.getElementsByClassName(
-//     'playbackSoundBadge__titleLink sc-truncate'
-//   )[0].attributes[0].nodeValue
-// )
-
 chrome.storage.sync.set(
   {
-    time_in_seconds: document.getElementsByClassName(
-      'playbackTimeline__progressWrapper'
-    )[0].attributes[3].nodeValue
+    timestamp: document
+      .getElementsByClassName('playbackTimeline__timePassed')[0]
+      .outerText.split('seconds')[1]
   },
   function() {
     console.log(
       `The timestamp occured at ${
-        document.getElementsByClassName('playbackTimeline__progressWrapper')[0]
-          .attributes[3].nodeValue
-      } seconds`
+        document
+          .getElementsByClassName('playbackTimeline__timePassed')[0]
+          .outerText.split('seconds')[1]
+      }`
     )
   }
 )
 
 chrome.storage.sync.set(
   {
-    track_title: document.getElementsByClassName(
+    title: document.getElementsByClassName(
       'playbackSoundBadge__titleLink sc-truncate'
     )[0].attributes[2].nodeValue
   },
@@ -54,29 +44,29 @@ chrome.storage.sync.set(
         document.getElementsByClassName(
           'playbackSoundBadge__titleLink sc-truncate'
         )[0].attributes[0].nodeValue
-      }#t=0:0${
-        document.getElementsByClassName('playbackTimeline__progressWrapper')[0]
-          .attributes[3].nodeValue
+      }#t=${
+        document
+          .getElementsByClassName('playbackTimeline__timePassed')[0]
+          .outerText.split('seconds')[1]
       }`
     )
   }
 )
 
-// console.log(document.getElementsByTagName('p'))
-
-//
-// obj.timestamp = document.getElementsByClassName(
-//   'playbackTimeline__progressWrapper'
-// )[0].attributes[3].nodeValue
-//
-// obj.title = document.getElementsByClassName(
-//   'playbackSoundBadge__titleLink sc-truncate'
-// )[0].attributes[2].nodeValue
-//
-// obj.url = document.getElementsByClassName(
-//   'playbackSoundBadge__titleLink sc-truncate'
-// )[0].attributes[0].nodeValue
-
-// chrome.storage.local.set({ key: 1 }, function() {
-//   console.log('Value is set to ' + 1)
-// })
+fetch(`http://localhost:3000/songs`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    timestamp: document
+      .getElementsByClassName('playbackTimeline__timePassed')[0]
+      .outerText.split('seconds')[1],
+    title: document.getElementsByClassName(
+      'playbackSoundBadge__titleLink sc-truncate'
+    )[0].attributes[2].nodeValue,
+    url: document.getElementsByClassName(
+      'playbackSoundBadge__titleLink sc-truncate'
+    )[0].attributes[0].nodeValue
+  })
+})
