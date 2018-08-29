@@ -13,14 +13,20 @@
       }
 
       .grid-container {
-        grid-gap: 1.5em;
         display: grid;
         grid-template-columns: auto auto auto;
         background-color: white;
-
       }
 
+      .grid-item {
 
+        text-align: center;
+        padding-bottom: 5em;
+      }
+
+      .item1 {
+        text-align: center;
+      }
 
       */ .table-header {
         text-align: left;
@@ -59,15 +65,15 @@
   </head>
 
   <body>
-    <h1>Most Recent Track</h1>
+    <h1 class="item1">Most Recent Track</h1>
     <div class="item1" id="recent-div">
     </div>
     <br>
     <br>
     <div class="grid-container">
-      <div></div>
+      <div class="grid-item"></div>
       <div class="grid-item">
-        <table id="song-table" style="width:90%">
+        <table id="song-table" style="width:100%">
           <tr>
             <th>Title</th>
             <th>Timestamp</th>
@@ -75,7 +81,7 @@
           </tr>
         </table>
       </div>
-      <div></div>
+      <div class="grid-item"></div>
     </div>
   </body>
 
