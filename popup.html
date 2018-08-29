@@ -1,17 +1,31 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <style>
-        button {
-          height: 30px;
-          width: 30px;
-          outline: none;
-        }
-      </style>
-    </head>
-    <body>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-      <button id="changeColor"></button>
-      <script src="popup.js"></script>
-    </body>
-  </html>
+<html>
+
+  <head>
+    <style>
+      button {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        outline: white;
+      }
+
+      html {
+        background-color: white
+      }
+
+      #alert {
+        text-align: center;
+        display: none
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <button id="changeColor"></button>
+    <script src="popup.js"></script>
+    <p id="alert">:)</p>
+  </body>
+
+</html>
