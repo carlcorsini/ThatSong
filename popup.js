@@ -1,4 +1,5 @@
 let changeColor = document.getElementById('changeColor')
+let alert = document.getElementById('alert')
 
 chrome.storage.sync.get('color', function(data) {
   changeColor.style.backgroundColor = data.color
@@ -7,6 +8,12 @@ chrome.storage.sync.get('color', function(data) {
 changeColor.onclick = function(element) {
   let color = element.target.value
 
+  changeColor.innerHTML = ':)'
+  changeColor.style.backgroundColor = 'rgb(36, 255, 58)'
+  setTimeout(() => {
+    changeColor.innerHTML = ''
+    changeColor.style.backgroundColor = '#ff7700'
+  }, 1500)
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     // chrome.tabs.executeScript(tabs[0].id, {
     //   code: scripty

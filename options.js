@@ -1,3 +1,60 @@
+let page = document.getElementById('recent-div')
+let table = document.getElementById('song-table')
+
+//construct most recent bookmarked timestamp
+
+function constructRecent() {
+  //grab data from chrome storage sync
+  chrome.storage.sync.get(['title', 'url', 'timestamp'], function(data) {
+    //create necessary html elements
+    let title = document.createElement('p')
+    let timestamp = document.createElement('p')
+    let url = document.createElement('a')
+    //append data from storage to elements
+    title.innerHTML = data.title
+    timestamp.innerHTML = data.timestamp
+    url.innerHTML = `https://soundcloud.com${data.url}#t=${data.timestamp}`
+    url.href = `https://soundcloud.com${data.url}#t=${data.timestamp}`
+    //append elements to page
+    page.appendChild(title)
+    page.appendChild(timestamp)
+    page.appendChild(url)
+  })
+}
+
+//construct table for list of bookmarks
+
+const constructTable = async () => {
+  // fetch bookmarks from API
+  let response = await fetch(`http://localhost:3000/songs`)
+  let responseJSON = await response.json()
+  //map over response and create list
+  responseJSON.forEach(a => {
+    a.timestamp === '0:00' ? (a.timestamp = '00:00') : a.timestamp
+    //create necessary html elements
+    let list = document.createElement('tr')
+    let timestamp = document.createElement('td')
+    let title = document.createElement('td')
+    let url = document.createElement('td')
+
+    //append data from storage to elements
+    timestamp.innerHTML = a.timestamp
+    title.innerHTML = a.title
+    url.innerHTML = `https://soundcloud.com${a.url}#t=${a.timestamp}`
+    table.appendChild(list)
+    list.appendChild(title)
+    list.appendChild(timestamp)
+    list.appendChild(url)
+    list.classList.add('list-item')
+    list.addEventListener('click', () => {
+      window.location.href = `https://soundcloud.com${a.url}#t=${a.timestamp}`
+    })
+  })
+}
+
+constructRecent()
+constructTable()
+
 // let page = document.getElementById('buttonDiv')
 // const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1']
 // function constructOptions(kButtonColors) {
@@ -13,35 +70,3 @@
 //   }
 // }
 // constructOptions(kButtonColors)
-
-let page = document.getElementById('buttonDiv')
-let table = document.getElementById('song-table')
-// const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1']
-function constructOptions() {
-  chrome.storage.sync.get(['title', 'url', 'timestamp'], function(data) {
-    console.log(data)
-    let title = document.createElement('p')
-    let timestamp = document.createElement('p')
-    let url = document.createElement('a')
-    title.innerHTML = data.title
-    timestamp.innerHTML = data.timestamp
-    url.innerHTML = `https://soundcloud.com${data.url}#t=${data.timestamp}`
-    url.href = `https://soundcloud.com${data.url}#t=${data.timestamp}`
-    page.appendChild(title)
-    page.appendChild(timestamp)
-    page.appendChild(url)
-  })
-}
-
-const constructTable = async () => {
-  let response = await fetch(`http://localhost:3000/songs`)
-  let responseJSON = await response.json()
-  // responseJSON.map()
-  // console.log(responseJSON)
-  responseJSON.forEach(a => {
-    console.log(a)
-  })
-}
-
-constructOptions()
-constructTable()

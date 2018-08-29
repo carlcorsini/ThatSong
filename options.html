@@ -1,29 +1,81 @@
 <!DOCTYPE html>
 <html>
+  <title>ThatSong</title>
 
   <head>
     <style>
       button {
+        border-radius: 40%;
         height: 30px;
         width: 30px;
         outline: none;
         margin: 10px;
+      }
+
+      .grid-container {
+        grid-gap: 1.5em;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        background-color: white;
+
+      }
+
+
+
+      */ .table-header {
+        text-align: left;
+      }
+
+      #song-table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 1.1em;
+      }
+
+      #song-table td,
+      #song-table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #song-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #song-table tr:hover {
+        background-color: #ddd;
+        cursor: pointer;
+      }
+
+      #song-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #ff7700;
+        color: white;
       }
     </style>
   </head>
 
   <body>
     <h1>Most Recent Track</h1>
-    <div id="buttonDiv">
+    <div class="item1" id="recent-div">
     </div>
-    <div>
-      <table id="song-table" style="width:100%">
-        <tr>
-          <th>Timestamp</th>
-          <th>Title</th>
-          <th>Url</th>
-        </tr>
-      </table>
+    <br>
+    <br>
+    <div class="grid-container">
+      <div></div>
+      <div class="grid-item">
+        <table id="song-table" style="width:90%">
+          <tr>
+            <th>Title</th>
+            <th>Timestamp</th>
+            <th>URL</th>
+          </tr>
+        </table>
+      </div>
+      <div></div>
     </div>
   </body>
 
