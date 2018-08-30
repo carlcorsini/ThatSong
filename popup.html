@@ -3,11 +3,12 @@
 
   <head>
     <style>
-      button {
+      #changeColor {
         border-radius: 50%;
         height: 40px;
         width: 40px;
         outline: white;
+        text-align: center;
       }
 
       html {
@@ -24,8 +25,13 @@
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <button id="changeColor"></button>
-    <script src="popup.js"></script>
-    <p id="alert">:)</p>
+    <form>
+      <input type="text" name="username" placeholder="username" id="username-input">
+      <input type="text" name="password" placeholder="password" id="password-input">
+      <button id="submit-button" type="button" name="submit">submit</button>
+    </form>
+    <script src="popup.js "></script>
+    <!-- <p id="alert ">:)</p> -->
   </body>
 
 </html>
