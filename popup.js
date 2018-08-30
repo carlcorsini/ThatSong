@@ -7,6 +7,15 @@ chrome.storage.sync.get('color', function(data) {
   changeColor.style.backgroundColor = data.color
   changeColor.setAttribute('value', data.color)
 })
+
+chrome.storage.sync.get('isLoggedIn', function(data) {
+  if (data.isLoggedIn) {
+    document.getElementById('username-input').style.display = 'none'
+    document.getElementById('password-input').style.display = 'none'
+    submit.style.display = 'none'
+  }
+})
+
 changeColor.onclick = function(element) {
   let color = element.target.value
 
@@ -17,9 +26,6 @@ changeColor.onclick = function(element) {
     changeColor.style.backgroundColor = '#ff7700'
   }, 1500)
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    // chrome.tabs.executeScript(tabs[0].id, {
-    //   code: scripty
-    // })
     chrome.tabs.executeScript(tabs[0].id, {
       file: 'scripty.js'
     })
@@ -40,7 +46,8 @@ const loginUser = async () => {
   if (await responseJSON.isLoggedIn) {
     chrome.storage.sync.set({
       isLoggedIn: true,
-      username: await responseJSON.username
+      username: await responseJSON.username,
+      user_id: await responseJSON.id
     })
     document.getElementById('username-input').style.display = 'none'
     document.getElementById('password-input').style.display = 'none'
@@ -51,17 +58,3 @@ const loginUser = async () => {
 submit.onclick = function(element) {
   loginUser()
 }
-
-// code: 'console.log(document.getElementsByClassName("playbackTimeline__progressWrapper")[0].attributes[3].nodeValue, document.getElementsByClassName("playbackSoundBadge__titleLink sc-truncate")[0].attributes[2].nodeValue, document.getElementsByClassName("playbackSoundBadge__titleLink sc-truncate")[0].attributes[0].nodeValue);'
-
-// let timestamp = document.getElementsByClassName(
-//   'playbackTimeline__progressWrapper'
-// )[0].attributes[3].nodeValue
-//
-// let title = document.getElementsByClassName(
-//   'playbackSoundBadge__titleLink sc-truncate'
-// )[0].attributes[2].nodeValue
-//
-// let url = document.getElementsByClassName(
-//   'playbackSoundBadge__titleLink sc-truncate'
-// )[0].attributes[0].nodeValue
