@@ -52,21 +52,23 @@ chrome.storage.sync.set(
     )
   }
 )
-
-fetch(`http://localhost:3000/songs`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    timestamp: document
-      .getElementsByClassName('playbackTimeline__timePassed')[0]
-      .outerText.split('seconds')[1],
-    title: document.getElementsByClassName(
-      'playbackSoundBadge__titleLink sc-truncate'
-    )[0].attributes[2].nodeValue,
-    url: document.getElementsByClassName(
-      'playbackSoundBadge__titleLink sc-truncate'
-    )[0].attributes[0].nodeValue
+chrome.storage.sync.get('user_id', function(data) {
+  fetch(`http://localhost:3000/songs`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      timestamp: document
+        .getElementsByClassName('playbackTimeline__timePassed')[0]
+        .outerText.split('seconds')[1],
+      title: document.getElementsByClassName(
+        'playbackSoundBadge__titleLink sc-truncate'
+      )[0].attributes[2].nodeValue,
+      url: document.getElementsByClassName(
+        'playbackSoundBadge__titleLink sc-truncate'
+      )[0].attributes[0].nodeValue,
+      user_id: data.user_id
+    })
   })
 })
