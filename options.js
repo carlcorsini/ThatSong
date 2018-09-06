@@ -36,18 +36,18 @@ const constructTable = async () => {
     let timestamp = document.createElement('td')
     let title = document.createElement('td')
     let url = document.createElement('td')
-    let user_id = document.createElement('td')
+    let username = document.createElement('td')
 
     //append data from storage to elements
     timestamp.innerHTML = a.timestamp
     title.innerHTML = a.title
     url.innerHTML = `https://soundcloud.com${a.url}#t=${a.timestamp}`
-    user_id.innerHTML = a.user_id
+    username.innerHTML = a.username
     table.appendChild(list)
     list.appendChild(title)
     list.appendChild(timestamp)
     list.appendChild(url)
-    list.appendChild(user_id)
+    list.appendChild(username)
     list.classList.add('list-item')
     list.addEventListener('click', () => {
       window.location.href = `https://soundcloud.com${a.url}#t=${a.timestamp}`
