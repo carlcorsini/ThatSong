@@ -1,12 +1,8 @@
 let changeColor = document.getElementById('changeColor')
-let alert = document.getElementById('alert')
+
 let form = document.getElementById('login-form')
 let submit = document.getElementById('submit-button')
-
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color
-  changeColor.setAttribute('value', data.color)
-})
+let notes = document.getElementById('song-notes')
 
 chrome.storage.sync.get('isLoggedIn', function(data) {
   if (data.isLoggedIn) {
@@ -17,14 +13,14 @@ chrome.storage.sync.get('isLoggedIn', function(data) {
 })
 
 changeColor.onclick = function(element) {
-  let color = element.target.value
-
+  chrome.storage.sync.set({ songNotes: notes.value || '' }, function(data) {})
+  notes.value = ''
   changeColor.innerHTML = ':)'
   changeColor.style.backgroundColor = 'rgb(36, 255, 58)'
   setTimeout(() => {
-    changeColor.innerHTML = ''
+    changeColor.innerHTML = 'this track!'
     changeColor.style.backgroundColor = '#ff7700'
-  }, 1500)
+  }, 250)
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.executeScript(tabs[0].id, {
       file: 'scripty.js'
