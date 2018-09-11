@@ -52,7 +52,7 @@ chrome.storage.sync.set(
     )
   }
 )
-chrome.storage.sync.get('user_id', function(data) {
+chrome.storage.sync.get(['user_id', 'songNotes'], function(data) {
   fetch(`http://localhost:3000/songs`, {
     method: 'POST',
     headers: {
@@ -68,6 +68,7 @@ chrome.storage.sync.get('user_id', function(data) {
       url: document.getElementsByClassName(
         'playbackSoundBadge__titleLink sc-truncate'
       )[0].attributes[0].nodeValue,
+      notes: data.songNotes,
       user_id: data.user_id
     })
   })
