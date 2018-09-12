@@ -1,3 +1,11 @@
+console.log(
+  document.getElementsByClassName('playbackSoundBadge__lightLink')[0].innerText
+)
+
+{
+  /* <a href="/golddiggerrecs" class="playbackSoundBadge__lightLink sc-link-light sc-truncate" title="GOLD DiGGER">GOLD DiGGER</a> */
+}
+
 chrome.storage.sync.set(
   {
     timestamp: document
@@ -27,6 +35,21 @@ chrome.storage.sync.set(
         document.getElementsByClassName(
           'playbackSoundBadge__titleLink sc-truncate'
         )[0].attributes[2].nodeValue
+      }`
+    )
+  }
+)
+
+chrome.storage.sync.set(
+  {
+    artist: document.getElementsByClassName('playbackSoundBadge__lightLink')[0]
+      .innerText
+  },
+  function() {
+    console.log(
+      `The artist is ${
+        document.getElementsByClassName('playbackSoundBadge__lightLink')[0]
+          .innerText
       }`
     )
   }
@@ -65,6 +88,9 @@ chrome.storage.sync.get(['user_id', 'songNotes'], function(data) {
       title: document.getElementsByClassName(
         'playbackSoundBadge__titleLink sc-truncate'
       )[0].attributes[2].nodeValue,
+      artist: document.getElementsByClassName(
+        'playbackSoundBadge__lightLink'
+      )[0].innerText,
       url: document.getElementsByClassName(
         'playbackSoundBadge__titleLink sc-truncate'
       )[0].attributes[0].nodeValue,
