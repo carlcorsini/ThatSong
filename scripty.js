@@ -76,7 +76,7 @@ chrome.storage.sync.set(
   }
 )
 chrome.storage.sync.get(['user_id', 'songNotes'], function(data) {
-  fetch(`http://localhost:3000/songs`, {
+  fetch(`https://that-song-back-end.herokuapp.com`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
