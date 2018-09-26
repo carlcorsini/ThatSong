@@ -15,6 +15,7 @@ function constructRecent() {
     timestamp.innerHTML = data.timestamp
     url.innerHTML = `https://soundcloud.com${data.url}#t=${data.timestamp}`
     url.href = `https://soundcloud.com${data.url}#t=${data.timestamp}`
+    url.target = '_blank'
     //append elements to page
     page.appendChild(title)
     page.appendChild(timestamp)
@@ -26,7 +27,7 @@ function constructRecent() {
 
 const constructTable = async () => {
   // fetch bookmarks from API
-  let response = await fetch(`http://localhost:3000/songs`)
+  let response = await fetch(`https://that-song-back-end.herokuapp.com/songs`)
   let responseJSON = await response.json()
   //map over response and create list
   responseJSON.forEach(a => {
@@ -42,6 +43,7 @@ const constructTable = async () => {
     timestamp.innerHTML = a.timestamp
     title.innerHTML = a.title
     url.innerHTML = `https://soundcloud.com${a.url}#t=${a.timestamp}`
+
     username.innerHTML = a.username
     table.appendChild(list)
     list.appendChild(title)

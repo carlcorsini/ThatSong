@@ -1,11 +1,3 @@
-console.log(
-  document.getElementsByClassName('playbackSoundBadge__lightLink')[0].innerText
-)
-
-{
-  /* <a href="/golddiggerrecs" class="playbackSoundBadge__lightLink sc-link-light sc-truncate" title="GOLD DiGGER">GOLD DiGGER</a> */
-}
-
 chrome.storage.sync.set(
   {
     timestamp: document
@@ -14,7 +6,7 @@ chrome.storage.sync.set(
   },
   function() {
     console.log(
-      `The timestamp occured at ${
+      `Timestamp: ${
         document
           .getElementsByClassName('playbackTimeline__timePassed')[0]
           .outerText.split('seconds')[1]
@@ -31,7 +23,7 @@ chrome.storage.sync.set(
   },
   function() {
     console.log(
-      `The title of the track is: ${
+      `Title: ${
         document.getElementsByClassName(
           'playbackSoundBadge__titleLink sc-truncate'
         )[0].attributes[2].nodeValue
@@ -47,7 +39,7 @@ chrome.storage.sync.set(
   },
   function() {
     console.log(
-      `The artist is ${
+      `Artist: ${
         document.getElementsByClassName('playbackSoundBadge__lightLink')[0]
           .innerText
       }`
@@ -63,7 +55,7 @@ chrome.storage.sync.set(
   },
   function() {
     console.log(
-      `The url is:  soundcloud.com${
+      `URL: soundcloud.com${
         document.getElementsByClassName(
           'playbackSoundBadge__titleLink sc-truncate'
         )[0].attributes[0].nodeValue
@@ -73,13 +65,16 @@ chrome.storage.sync.set(
           .outerText.split('seconds')[1]
       }`
     )
+    console.log('Thanks for using ThatSong! :)')
   }
 )
-chrome.storage.sync.get(['user_id', 'songNotes'], function(data) {
-  fetch(`https://that-song-back-end.herokuapp.com`, {
+
+chrome.storage.sync.get(['user_id', 'songNotes', 'token'], function(data) {
+  fetch(`http://localhost:3000/songs`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: data.token
     },
     body: JSON.stringify({
       timestamp: document
