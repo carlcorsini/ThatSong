@@ -1,7 +1,7 @@
 {
   "name": "ThatSong",
   "options_page": "options.html",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "DJ's Best Fwend",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
