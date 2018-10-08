@@ -13,15 +13,17 @@
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/Dj16.png",
-      "48": "images/Dj48.png",
-      "128": "images/Dj128.png"
+      "16": "images/thatSong_16.png",
+      "32": "images/thatSong_32.png",
+      "48": "images/thatSong_48.png",
+      "128": "images/thatSong_128.png"
     }
   },
   "icons": {
-    "16": "images/Dj16.png",
-    "48": "images/Dj48.png",
-    "128": "images/Dj128.png"
+    "16": "images/thatSong_16.png",
+    "32": "images/thatSong_32.png",
+    "48": "images/thatSong_48.png",
+    "128": "images/thatSong_128.png"
   },
   "manifest_version": 2
 }
