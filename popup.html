@@ -3,11 +3,14 @@
 
   <head>
     <style>
-      #changeColor {
+      #thatSong {
+        box-shadow: 1px 1px 10px 1px rgba(30, 31, 38, 0.58);
         width: 100%;
         height: 40px;
         background-color: #ff7700;
         text-align: center;
+        border: 2px solid #ff7700;
+        border-radius: 5%;
         border-color: black;
         color: white;
         font-size: 1.3em;
@@ -15,20 +18,24 @@
       }
 
       #song-notes {
+        box-shadow: 1px 1px 10px 1px rgba(30, 31, 38, 0.58);
         margin-top: .5em;
       }
 
       #submit-button {
+        box-shadow: 1px 1px 10px 1px rgba(30, 31, 38, 0.58);
         text-align: center;
         background-color: black;
         color: #ff7700;
         border: 2px solid #ff7700;
+        border-radius: 10;
         margin-top: .5em;
-        height: 3em;
+        height: 40px;
         width: 100%
       }
 
       .inputs {
+        box-shadow: 1px 1px 10px 1px rgba(30, 31, 38, 0.58);
         height: 2em;
         margin-top: .5em;
         margin-bottom: .5em;
@@ -52,7 +59,7 @@
 
 
   <body>
-    <button class="ui button" id="changeColor">this track!</button>
+    <button class="ui button" id="thatSong">ThatSong</button>
     <div id="no-account">
       <p>
         If you do not yet have an account signup at:
@@ -60,8 +67,8 @@
       <h3>thatsong.com</h3>
     </div>
     <form>
-      <input class="inputs" type="text" name="username" placeholder="username" id="username-input">
-      <input class="inputs" type="password" name="password" placeholder="password" id="password-input">
+      <input required class="inputs" type="text" name="username" placeholder="username" id="username-input">
+      <input required class="inputs" type="password" name="password" placeholder="password" id="password-input">
       <button id="submit-button" type="button" name="submit">Login</button>
     </form>
     <input class="inputs" type="text" name="note" placeholder="note (max length 25)" maxlength="25" id="song-notes">

@@ -1,4 +1,4 @@
-let changeColor = document.getElementById('changeColor')
+let thatSong = document.getElementById('thatSong')
 
 let form = document.getElementById('login-form')
 let submit = document.getElementById('submit-button')
@@ -9,27 +9,51 @@ let signup = document.getElementById('no-account')
 //   isLoggedIn: false
 // })
 
-chrome.storage.sync.get('isLoggedIn', function(data) {
-  if (data.isLoggedIn) {
+const token = async data => {
+  if (!data.token) {
+    return false
+  }
+  let response = await fetch('http://localhost:3000/users/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: data.token
+    }
+  })
+  let responseJSON = await response.json()
+  if (responseJSON.message !== 'token valid') {
+    console.log('hey')
+    chrome.storage.sync.remove(['isLoggenIn', 'token'])
+    return false
+  }
+  return true
+}
+
+chrome.storage.sync.get(['isLoggedIn', 'token'], function(data) {
+  const isValid = token(data)
+  if (data.isLoggedIn && isValid) {
     document.getElementById('username-input').style.display = 'none'
     document.getElementById('password-input').style.display = 'none'
     submit.style.display = 'none'
     signup.style.display = 'none'
   } else {
-    changeColor.style.display = 'none'
+    document.getElementById('username-input').style.display = 'unset'
+    document.getElementById('password-input').style.display = 'unset'
+    submit.style.display = 'unset'
+    signup.style.display = 'unset'
+    thatSong.style.display = 'none'
     notes.style.display = 'none'
   }
 })
 
-changeColor.onclick = function(element) {
+thatSong.onclick = function(element) {
   chrome.storage.sync.set({ songNotes: notes.value || '' }, function(data) {})
   notes.value = ''
-  changeColor.innerHTML = ':)'
-
-  changeColor.style.backgroundColor = 'rgb(36, 255, 58)'
+  thatSong.innerHTML = ':)'
+  thatSong.style.backgroundColor = 'rgb(36, 255, 58)'
   setTimeout(() => {
-    changeColor.innerHTML = 'this track!'
-    changeColor.style.backgroundColor = '#ff7700'
+    thatSong.innerHTML = 'ThatSong'
+    thatSong.style.backgroundColor = '#ff7700'
   }, 250)
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.executeScript(tabs[0].id, {
@@ -60,7 +84,7 @@ const loginUser = async () => {
     document.getElementById('password-input').style.display = 'none'
     submit.style.display = 'none'
     signup.style.display = 'none'
-    changeColor.style.display = 'unset'
+    thatSong.style.display = 'unset'
     notes.style.display = 'unset'
   }
 }
