@@ -13,13 +13,16 @@ const token = async data => {
   if (!data.token) {
     return false
   }
-  let response = await fetch('http://localhost:3000/users/token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: data.token
+  let response = await fetch(
+    'https://that-song-back-end.herokuapp.com/users/token',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: data.token
+      }
     }
-  })
+  )
   let responseJSON = await response.json()
   if (responseJSON.message !== 'token valid') {
     console.log('hey')
@@ -65,13 +68,16 @@ thatSong.onclick = function(element) {
 const loginUser = async () => {
   let username = document.getElementById('username-input').value
   let password = document.getElementById('password-input').value
-  let response = await fetch('http://localhost:3000/users/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ username, password })
-  })
+  let response = await fetch(
+    'https://that-song-back-end.herokuapp.com/users/login',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    }
+  )
   let responseJSON = await response.json()
   if (await responseJSON.isLoggedIn) {
     chrome.storage.sync.set({

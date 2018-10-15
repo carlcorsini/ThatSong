@@ -1,7 +1,8 @@
 {
   "name": "ThatSong",
+  "short_name": "ThatSong",
   "options_page": "options.html",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DJ's Best Fwend",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
