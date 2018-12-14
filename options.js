@@ -60,18 +60,22 @@ const constructTable = async () => {
 constructRecent()
 constructTable()
 
-// let page = document.getElementById('buttonDiv')
-// const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1']
-// function constructOptions(kButtonColors) {
-//   for (let item of kButtonColors) {
-//     let button = document.createElement('button')
-//     button.style.backgroundColor = item
-//     button.addEventListener('click', function() {
-//       chrome.storage.sync.set({ color: item }, function() {
-//         console.log('color is ' + item)
-//       })
-//     })
-//     page.appendChild(button)
-//   }
-// }
-// constructOptions(kButtonColors)
+let page2 = document.getElementById('button-div')
+
+const kButtonColors = [
+  { name: 'mobile', color: 'black' },
+  { name: 'desktop', color: '#ff7700' }
+]
+function constructOptions(kButtonColors) {
+  for (let item of kButtonColors) {
+    let button = document.createElement('button')
+    button.style.backgroundColor = item.color
+    button.addEventListener('click', function() {
+      chrome.storage.sync.set({ scrape_type: item.name }, function() {
+        console.log('ur scraping ' + item.name)
+      })
+    })
+    page2.appendChild(button)
+  }
+}
+constructOptions(kButtonColors)

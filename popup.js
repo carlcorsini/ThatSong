@@ -6,7 +6,7 @@ let notes = document.getElementById('song-notes')
 let signup = document.getElementById('no-account')
 
 // chrome.storage.sync.set({
-//   isLoggedIn: false
+//   isLoggedIn: false,
 // })
 
 const token = async data => {
@@ -19,8 +19,8 @@ const token = async data => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: data.token
-      }
+        Authorization: data.token,
+      },
     }
   )
   let responseJSON = await response.json()
@@ -60,7 +60,7 @@ thatSong.onclick = function(element) {
   }, 250)
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.executeScript(tabs[0].id, {
-      file: 'scripty.js'
+      file: 'scripty.js',
     })
   })
 }
@@ -73,9 +73,9 @@ const loginUser = async () => {
     {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, password }),
     }
   )
   let responseJSON = await response.json()
@@ -84,7 +84,7 @@ const loginUser = async () => {
       token: await responseJSON.token,
       isLoggedIn: true,
       username: await responseJSON.username,
-      user_id: await responseJSON.id
+      user_id: await responseJSON.id,
     })
     document.getElementById('username-input').style.display = 'none'
     document.getElementById('password-input').style.display = 'none'

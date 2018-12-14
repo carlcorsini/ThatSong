@@ -3,7 +3,7 @@
   "short_name": "ThatSong",
   "options_page": "options.html",
   "version": "1.0.2",
-  "description": "DJ's Best Fwend",
+  "description": "DJ's Best Friend",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
     "scripts": ["background.js"],
