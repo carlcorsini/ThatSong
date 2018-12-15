@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ThatSong
 
 ThatSong is platform created by [Carl Corsini] that enables soundcloud users to store timestamps from tracks on soundcloud with a click of a button. ThatSong utilizes a React-App ([ThatSong]) and [Chrome Extension] in conjunction with a Node.js Rest API.
@@ -47,3 +48,6 @@ MIT
 [express]: http://expressjs.com
 [reactjs]: https://reactjs.org/
 [youtube tutorial]: https://www.youtube.com/watch?v=zWdKutLttWI
+=======
+DJ's Best Fwend!
+>>>>>>> a111a7256969521029f88f35c0acce085dfeadab
